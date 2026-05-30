@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-sand-50 text-lake-900 font-body antialiased;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-display text-lake-900;
+    line-height: 1.15;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  /* Visible keyboard focus everywhere */
+  :focus-visible {
+    outline: 3px solid #2f76a3;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: #cda866;
+    color: #0f2a3d;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .prose-warm {
+    @apply text-[1.0625rem] leading-[1.75] text-lake-800;
+  }
+
+  .prose-warm p {
+    @apply mb-5;
+  }
+
+  .prose-warm h2 {
+    @apply mt-10 mb-4 text-2xl sm:text-3xl text-lake-900;
+  }
+
+  .prose-warm h3 {
+    @apply mt-8 mb-3 text-xl text-lake-900;
+  }
+
+  .prose-warm ul {
+    @apply mb-5 list-disc space-y-2 pl-6 marker:text-forest-500;
+  }
+
+  .prose-warm ol {
+    @apply mb-5 list-decimal space-y-2 pl-6 marker:text-forest-500;
+  }
+
+  .card {
+    @apply rounded-2xl bg-white shadow-soft ring-1 ring-lake-900/5 transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1 hover:shadow-natural;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-semibold transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-lake-700 text-sand-50 hover:bg-lake-800 hover:shadow-natural;
+  }
+
+  .btn-accent {
+    @apply btn bg-sunset-500 text-white hover:bg-sunset-600 hover:shadow-natural;
+  }
+
+  .btn-ghost {
+    @apply btn border border-lake-200 bg-white/70 text-lake-800 hover:bg-white hover:border-lake-300;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full bg-forest-50 px-3 py-1 text-sm font-semibold text-forest-700 ring-1 ring-forest-200;
+  }
+
+  .eyebrow {
+    @apply font-rustic text-sm font-semibold uppercase tracking-[0.18em] text-sunset-600;
+  }
+
+  /* Inline accordion: content already in the DOM, revealed via grid-rows transition. */
+  .accordion-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+  }
+
+  .accordion-panel.open {
+    grid-template-rows: 1fr;
+  }
+
+  .accordion-inner {
+    overflow: hidden;
+  }
+
+  .link-underline {
+    @apply text-lake-700 underline decoration-lake-300 underline-offset-4 hover:text-lake-900 hover:decoration-lake-600;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .bg-grain {
+    background-image:
+      linear-gradient(180deg, rgba(244, 236, 219, 0) 0%, rgba(244, 236, 219, 0.6) 100%),
+      repeating-linear-gradient(
+        45deg,
+        rgba(107, 79, 58, 0.025) 0px,
+        rgba(107, 79, 58, 0.025) 2px,
+        transparent 2px,
+        transparent 6px
+      );
+  }
+}

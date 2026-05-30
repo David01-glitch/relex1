@@ -1,0 +1,27 @@
+{
+  "name": "Golden Years Canoeing",
+  "description": "A canoeing and relaxing lake adventure blog for seniors — static pre-rendered React site served by Express.",
+  "repository": "https://github.com/your-org/golden-years-canoeing",
+  "keywords": ["canoeing", "lake", "seniors", "outdoor", "blog", "react", "vite", "ssg"],
+  "website": "https://goldenyearscanoeing.com",
+  "stack": "heroku-22",
+  "buildpacks": [
+    { "url": "heroku/nodejs" }
+  ],
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment.",
+      "value": "production"
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "description": "Install devDependencies during build so Vite is available.",
+      "value": "false"
+    }
+  },
+  "scripts": {
+    "postdeploy": ""
+  },
+  "formation": {
+    "web": { "quantity": 1, "size": "basic" }
+  }
+}

@@ -1,0 +1,8 @@
+# Golden Years Canoeing — allow all crawlers
+User-agent: *
+Allow: /
+
+# Be friendly to crawlers
+Crawl-delay: 1
+
+Sitemap: https://goldenyearscanoeing.com/sitemap.xml

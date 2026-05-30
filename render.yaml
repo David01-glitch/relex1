@@ -1,0 +1,25 @@
+# Render Blueprint for Golden Years Canoeing
+# Docs: https://render.com/docs/blueprint-spec
+#
+# This deploys the site as a Node web service that runs the Express server
+# in `server.js` (compression + cache headers + clean URLs + pre-rendered 404).
+# Render injects $PORT automatically; server.js already reads it.
+services:
+  - type: web
+    name: golden-years-canoeing
+    runtime: node
+    plan: starter
+    region: oregon
+    branch: main
+    autoDeploy: true
+    buildCommand: npm ci && npm run build
+    startCommand: node server.js
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 20.19.0
+      - key: NODE_ENV
+        value: production
+      # Ensure devDependencies (vite, tailwind, etc.) are installed during build.
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
