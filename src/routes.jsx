@@ -32,6 +32,11 @@ export const routes = [
       { path: 'legal/terms', element: <LegalPage doc="terms" /> },
       { path: 'legal/refund', element: <LegalPage doc="refund" /> },
 
+      // Short-URL aliases — Google Ads compliance checkers look for these exact paths.
+      { path: 'privacy', element: <LegalPage doc="privacy" /> },
+      { path: 'terms', element: <LegalPage doc="terms" /> },
+      { path: 'refund', element: <LegalPage doc="refund" /> },
+
       { path: '404', element: <NotFound /> },
       { path: '*', element: <NotFound /> },
     ],
