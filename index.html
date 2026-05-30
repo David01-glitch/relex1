@@ -27,7 +27,8 @@
         security_storage: 'granted',
         wait_for_update: 500
       });
-      // Restore a previously saved choice as early as possible.
+      // Restore a previously saved choice as early as possible, and flag the
+      // document so CSS can hide the server-rendered cookie banner before paint.
       try {
         var saved = localStorage.getItem('gyc-consent');
         if (saved === 'granted') {
@@ -37,6 +38,9 @@
             ad_personalization: 'granted',
             analytics_storage: 'granted'
           });
+        }
+        if (saved === 'granted' || saved === 'denied') {
+          document.documentElement.classList.add('consent-set');
         }
       } catch (e) {}
     </script>

@@ -1,16 +1,21 @@
 import { useEffect, useState } from 'react'
 import { getStoredConsent, setConsent } from '../utils/analytics.js'
 
-// Elegant slide-up consent banner. Only shows when no decision is stored.
-// Choice persists in localStorage and updates Google Consent Mode v2 live.
+// Elegant slide-up consent banner. Rendered server-side so it appears in the
+// raw HTML source (compliance + crawlers). On mount, if the visitor already
+// chose, we hide it. Choice persists in localStorage and updates Google
+// Consent Mode v2 live.
 export default function CookieBanner() {
-  const [visible, setVisible] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const [visible, setVisible] = useState(true)
+  const [mounted, setMounted] = useState(true)
 
   useEffect(() => {
-    if (!getStoredConsent()) {
-      setVisible(true)
-      const t = setTimeout(() => setMounted(true), 80)
+    if (getStoredConsent()) {
+      setVisible(false)
+    } else {
+      // tiny tick so the slide-up transition can play after hydration
+      setMounted(false)
+      const t = setTimeout(() => setMounted(true), 60)
       return () => clearTimeout(t)
     }
   }, [])
@@ -25,7 +30,8 @@ export default function CookieBanner() {
 
   return (
     <div
-      className="js-only fixed inset-x-0 bottom-0 z-[60] px-4 pb-4 sm:px-6"
+      data-cookie-banner=""
+      className="fixed inset-x-0 bottom-0 z-[60] px-4 pb-4 sm:px-6"
       role="dialog"
       aria-live="polite"
       aria-label="Cookie and privacy consent"

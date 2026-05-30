@@ -100,6 +100,12 @@
     @apply font-rustic text-sm font-semibold uppercase tracking-[0.18em] text-sunset-600;
   }
 
+  /* Hide the server-rendered cookie banner instantly if the visitor already
+     decided (flag set by the boot script in index.html before paint). */
+  .consent-set [data-cookie-banner] {
+    display: none !important;
+  }
+
   /* Inline accordion: content already in the DOM, revealed via grid-rows transition. */
   .accordion-panel {
     display: grid;
